@@ -1,13 +1,3 @@
-variable "pm_api_token_id" {
-  description = "ID Tokken"
-  type        = string
-}
-
-variable "pm_api_token_secret" { 
-  description = "Secret Tokken"
-  type        = string
-}
-
 variable "vm_memory" {
   description = ""
   type        = number
