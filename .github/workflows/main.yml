@@ -1,0 +1,49 @@
+name: Terraform Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+env:
+  TF_CLI_ARGS_apply: "-auto-approve"
+
+jobs:
+  terraform:
+    name: "Terraform CI/CD"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🛠️ Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 📥 Install Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: latest
+
+      - name: 📏 Lint Terraform (fmt & validate)
+        run: |
+          terraform fmt -check
+          terraform init
+          terraform validate
+
+      - name: 🔍 Terraform Plan
+        run: |
+          terraform plan -out=tfplan
+        env:
+          PM_API_URL: ${{ secrets.PM_API_URL }}
+          PM_USER: ${{ secrets.PM_USER }}
+          PM_PASSWORD: ${{ secrets.PM_PASSWORD }}
+
+      - name: 🚀 Terraform Apply (Manuel)
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          terraform apply tfplan
+        env:
+          PM_API_URL: ${{ secrets.PM_API_URL }}
+          PM_USER: ${{ secrets.PM_USER }}
+          PM_PASSWORD: ${{ secrets.PM_PASSWORD }}
