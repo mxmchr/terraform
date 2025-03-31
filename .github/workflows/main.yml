@@ -9,11 +9,16 @@ on:
 jobs:
   terraform:
     name: "Terraform Pipeline"
-    runs-on: self-hosted  # Forcer l'exécution sur le runner local
+    runs-on: self-hosted  # Exécute sur le runner local
 
     steps:
-      - name: Checkout Repository  # 🚀 Récupère les fichiers du repo sur le runner
+      - name: Checkout Repository
         uses: actions/checkout@v4
+
+      - name: Install Node.js  # 🚀 Fix de ton erreur
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
 
       - name: Install Terraform
         uses: hashicorp/setup-terraform@v3
