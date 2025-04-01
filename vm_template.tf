@@ -1,4 +1,4 @@
-resource "proxmox_vm_qemu" "vm_template" {
+resource "proxmox_vm_qemu" "vm_clone" {
   name        = "ubuntu-vm"
   target_node = "pev1"  # Remplacez par le nom de votre nœud Proxmox si différent
 
@@ -42,5 +42,5 @@ output "vm_id_clone" {
 }
 
 output "vm_name_clone" {
-  value = proxmox_vm_qemu.vm_from_template.name
+  value = proxmox_vm_qemu.vm_clone.name
 }
