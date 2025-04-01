@@ -41,6 +41,6 @@ output "vm_id" {
   value = proxmox_vm_qemu.vm.id + 1
 }
 
-output "vm_name" {
+output "vm_name_clone" {
   value = proxmox_vm_qemu.vm.name
 }
