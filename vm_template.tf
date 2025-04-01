@@ -37,8 +37,8 @@ resource "proxmox_vm_qemu" "vm" {
   onboot = true
 }
 
-output "vm_id" {
-  value = proxmox_vm_qemu.vm.id + 1
+output "vm_id_clone" {
+  value = proxmox_vm_qemu.vm.id
 }
 
 output "vm_name_clone" {
