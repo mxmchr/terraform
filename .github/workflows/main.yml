@@ -25,6 +25,7 @@ jobs:
 
       - name: Lint Terraform
         run: |
+          terraform fmt
           terraform fmt -check
           terraform init
           terraform validate
