@@ -38,7 +38,7 @@ resource "proxmox_vm_qemu" "vm" {
 }
 
 output "vm_id" {
-  value = proxmox_vm_qemu.vm.id
+  value = proxmox_vm_qemu.vm.id + 1
 }
 
 output "vm_name" {
