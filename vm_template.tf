@@ -42,5 +42,5 @@ output "vm_id_clone" {
 }
 
 output "vm_name_clone" {
-  value = proxmox_vm_qemu.vm.name_from_template
+  value = proxmox_vm_qemu.vm.name_from_template.name
 }
